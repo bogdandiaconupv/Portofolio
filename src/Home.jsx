@@ -3,7 +3,7 @@ import Canva from './Canva'
 
 const Home = () => {
   return (
-    <div id='homeScreen' className='w-full h-full m-0'>
+    <div id='homeScreen' className='w-full h-[100vh] m-0'>
       <Canva />
     </div>
   )

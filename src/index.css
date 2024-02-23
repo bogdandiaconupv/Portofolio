@@ -11,7 +11,7 @@ body, html {
 
 #root{
   width: 100%;
-  height: 100%;
+  height: 200vh;
   margin: 0px;
   background-color: rgb(39, 39, 41);
 }
