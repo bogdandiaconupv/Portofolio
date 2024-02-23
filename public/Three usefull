@@ -1,0 +1,9 @@
+how to make react components with glb ->
+
+npm install gltfjsx --save-dev
+
+npx gltfjsx public/models/SampleScene.glb
+
+mv *.jsx src
+
+add models/ to loaders

@@ -34,7 +34,7 @@ const HelmetGold = ({props , rank}) => {
           {/* <mesh geometry={nodes.CorinthianHelmet_LOD2.geometry} material={materials.Corinthian} scale={10} /> */}
         </group>
         <PerspectiveCamera makeDefault={false} far={1000.134} near={0.3} fov={60} position={[0, 1, -10]} rotation={[-Math.PI, 0, -Math.PI]} />
-        <directionalLight intensity={3.142} decay={2} color="#fffaec" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
+        <directionalLight intensity={3.142} decay={2} color="#ed05d2" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
       </group>
     );
   }
@@ -47,7 +47,7 @@ const HelmetGold = ({props , rank}) => {
           <mesh geometry={nodes.CorinthianHelmet_LOD2.geometry} material={materials.Corinthian} scale={10} />
         </group>
         <PerspectiveCamera makeDefault={false} far={1000.134} near={0.3} fov={60} position={[0, 1, -10]} rotation={[-Math.PI, 0, -Math.PI]} />
-        <directionalLight intensity={1.142} decay={2} color="#fffaec" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
+        <directionalLight intensity={1.142} decay={2} color="#22ff00" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
       </group>
     );
   }
