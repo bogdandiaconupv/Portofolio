@@ -29,7 +29,7 @@ const Canva = ({ rank }) => {
   }, [canvasRef]); 
 
   return (
-    <Canvas ref={canvasRef} >
+    <Canvas ref={canvasRef}>
       <pointLight position={lightPosition} intensity={300} />
       <HelmetGold rank={rank} />
     </Canvas>
