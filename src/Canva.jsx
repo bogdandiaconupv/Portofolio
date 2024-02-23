@@ -1,32 +1,36 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import HelmetGold from './HelmetGold'; // Import HelmetGold component here
+import HelmetGold from './HelmetGold'; 
 
 const Canva = ({ rank }) => {
-  const [lightPosition, setLightPosition] = useState([0, -3, 10]); // Initial light position
+  const [lightPosition, setLightPosition] = useState([0, -3, 10]); 
+  const canvasRef = useRef(null); // Ref for the canvas element
 
   useEffect(() => {
     const handleMouseMove = (event) => {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-      // Update the light position based on the mouse position
-      setLightPosition([x * 10, y * 10, 10]); // Adjust the factors as needed
+      // update light
+      setLightPosition([x * 10, y * 10, 4]); 
     };
 
-    // Add event listener for mouse movement
-    window.addEventListener('mousemove', handleMouseMove);
+    const canvas = canvasRef.current;
 
-    // Cleanup: remove event listener when component unmounts
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []); // Empty dependency array ensures that this effect runs only once
+    if (canvas) {
+      // Add event listener for mousemove on canvas
+      canvas.addEventListener('mousemove', handleMouseMove);
+
+      // Cleanup: remove event listener when component unmounts
+      return () => {
+        canvas.removeEventListener('mousemove', handleMouseMove);
+      };
+    }
+  }, [canvasRef]); 
 
   return (
-    <Canvas>
-      {/* <ambientLight intensity={0}/> */}
-      <pointLight position={lightPosition} intensity={800} />
+    <Canvas ref={canvasRef} >
+      <pointLight position={lightPosition} intensity={300} />
       <HelmetGold rank={rank} />
     </Canvas>
   );

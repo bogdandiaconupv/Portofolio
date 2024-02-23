@@ -11,7 +11,7 @@ const HelmetGold = ({props , rank}) => {
   // useFrame hook to update rotation on each frame
   useFrame(() => {
     if (group.current) {
-      group.current.rotation.y += 0.008; // Adjust the rotation speed as needed
+      group.current.rotation.y += 0.000; // Adjust the rotation speed as needed
     }
   });
 
@@ -31,7 +31,7 @@ const HelmetGold = ({props , rank}) => {
             {/* <mesh geometry={nodes.CorinthianHelmet_LOD2.geometry} material={materials.Corinthian} scale={10} /> */}
           </group>
           <PerspectiveCamera makeDefault={false} far={1000.134} near={0.3} fov={60} position={[0, 1, -10]} rotation={[-Math.PI, 0, -Math.PI]} />
-          <directionalLight intensity={3.142} decay={2} color="#fffaec" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
+          <directionalLight intensity={0.03} decay={2} color="#fffaec" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
         </group>
       </>
     );
