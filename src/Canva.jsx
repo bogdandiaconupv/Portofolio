@@ -1,17 +1,15 @@
 import React from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { useSpring, animated } from '@react-spring/web';
+import { Canvas } from '@react-three/fiber';
+import HelmetGold from './HelmetGold'; // Import HelmetGold component here
 
-import Sphere from './Sphere';
-
-const Canva = () => {
-   
-    
+const Canva = ({ rank }) => {
     return (
-        <Canvas>
-            <Sphere />
-        </Canvas>
+      <Canvas>
+        {/* <ambientLight intensity={0}/> */}
+        <pointLight position={[0, -3, 10]} intensity={800} />
+        <HelmetGold rank={rank} />
+      </Canvas>
     );
-};
+  };
 
 export default Canva;
