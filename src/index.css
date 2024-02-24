@@ -15,3 +15,7 @@ body, html {
   margin: 0px;
   background-color: rgb(0, 0, 0);
 }
+
+/* .hideScroll ::-webkit-scrollbar {
+  display: none;
+} */

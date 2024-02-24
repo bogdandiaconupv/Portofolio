@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import HelmetGold from './HelmetGold'; 
+import { OrbitControls, ScrollControls } from '@react-three/drei';
 
 const Canva = ({ rank }) => {
   const [lightPosition, setLightPosition] = useState([0, -3, 10]); 
-  const canvasRef = useRef(null); // Ref for the canvas element
+  const canvasContainerRef = useRef(null); // Ref for the canvas container
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -15,24 +16,29 @@ const Canva = ({ rank }) => {
       setLightPosition([x * 10, y * 10, 4]); 
     };
 
-    const canvas = canvasRef.current;
+    const canvasContainer = canvasContainerRef.current;
 
-    if (canvas) {
-      // Add event listener for mousemove on canvas
-      canvas.addEventListener('mousemove', handleMouseMove);
+    if (canvasContainer) {
+      // Add event listener for mousemove on canvas container
+      canvasContainer.addEventListener('mousemove', handleMouseMove);
 
       // Cleanup: remove event listener when component unmounts
       return () => {
-        canvas.removeEventListener('mousemove', handleMouseMove);
+        canvasContainer.removeEventListener('mousemove', handleMouseMove);
       };
     }
-  }, [canvasRef]); 
+  }, [canvasContainerRef]); 
 
   return (
-    <Canvas ref={canvasRef} >
-      <pointLight position={lightPosition} intensity={300} />
-      <HelmetGold rank={rank} />
-    </Canvas>
+    <div ref={canvasContainerRef} className='w-full h-full hideScroll'>
+      <Canvas className='bg-blue-300'>
+        <pointLight position={lightPosition} intensity={500} />
+        <OrbitControls enableZoom={false} />
+        <ScrollControls pages={1} damping={1} >
+          <HelmetGold rank={rank} />  
+        </ScrollControls >
+      </Canvas>
+    </div>
   );
 };
 

@@ -1,37 +1,63 @@
-import React, { useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useGLTF, PerspectiveCamera } from '@react-three/drei';
+import { useGLTF, PerspectiveCamera, useScroll } from '@react-three/drei';
+import gsap from 'gsap';
+
+
+export const FLOOR_HEIGHT = 2;
+export const NB_FLOORS = 1;
+
 
 const HelmetGold = ({props , rank}) => {
   const group = useRef(); // Ref for the group containing the helmet mesh
+  const ref = useRef();
+  const tl = useRef();
+  const goldHelmet = useRef();
  
 
   const { nodes, materials } = useGLTF('models/SampleScene.glb');
 
   // useFrame hook to update rotation on each frame
   useFrame(() => {
-    if (group.current) {
-      group.current.rotation.y += 0.000; // Adjust the rotation speed as needed
-    }
+    tl.current.seek(scroll.offset * tl.current.duration());
   });
 
-  // Function to handle mouse click
+
+
   
+  const scroll = useScroll();
+  useLayoutEffect(() => {
+    tl.current = gsap.timeline();
+    //vertical animation 
+     tl.current.to(
+      ref.current.position,{
+        duration:1,
+        x : 2,
+      },
+      0
+     );
+
+
+     tl.current.from(
+      goldHelmet.current.position,
+      {
+        duration:0.1,
+        x:0,
+
+      },
+      0.5
+     );
+  }, [])
+
   function returnGold() {
     return (
       <>
-        {/* Point light following the mouse click position */}
-        
-  
-        {/* Helmet group */}
-        <group ref={group}  {...props} dispose={null}>
-          <group position={[0, 0, 0]}>
+        <group ref={ref}>
+          <group ref={goldHelmet}>
             <mesh geometry={nodes.CorinthianHelmet_LOD0.geometry} material={materials.Bronze} scale={10} />
-            {/* <mesh geometry={nodes.CorinthianHelmet_LOD1.geometry} material={materials.Corinthian} scale={10} /> */}
-            {/* <mesh geometry={nodes.CorinthianHelmet_LOD2.geometry} material={materials.Corinthian} scale={10} /> */}
           </group>
           <PerspectiveCamera makeDefault={false} far={1000.134} near={0.3} fov={60} position={[0, 1, -10]} rotation={[-Math.PI, 0, -Math.PI]} />
-          <directionalLight intensity={0.03} decay={2} color="#fffaec" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
+          <directionalLight intensity={1.53} decay={2} color="#fffaec" position={[0, 3, 0]} rotation={[-2.199, -0.327, -2.725]} />
         </group>
       </>
     );
