@@ -33,6 +33,7 @@ const HelmetGold = ({props , rank}) => {
       ref.current.position,{
         duration:1,
         x : 2,
+        z: 5,
       },
       0
      );
@@ -46,6 +47,14 @@ const HelmetGold = ({props , rank}) => {
 
       },
       0.5
+     );
+     tl.current.to(
+      goldHelmet.current.rotation,
+      {
+        duration:0.3,
+        z: -Math.PI/4,
+      },
+      0
      );
   }, [])
 
