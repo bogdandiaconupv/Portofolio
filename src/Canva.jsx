@@ -70,7 +70,7 @@ const Canva = ({ rank }) => {
 
   return (
     <div ref={canvasContainerRef} className='w-full h-full hideScroll'>
-      <Canvas className='bg-blue-300'>
+      <Canvas className=''>
         <pointLight position={lightPosition} intensity={500} />
         <OrbitControls enableZoom={false} />
         <ScrollControls
